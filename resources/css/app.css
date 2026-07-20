@@ -1,0 +1,7 @@
+@import "./dashboard.css";
+@import "leaflet/dist/leaflet.css";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,6 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
+<div class="scr-content">
 <div class="space-y-6">
     <!-- Header -->
     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex justify-between items-center">
@@ -9,7 +10,7 @@
             <p class="text-slate-500 mt-1">Monitored supply chain regions and critical alerts</p>
         </div>
         <div class="text-sm font-semibold text-slate-400 bg-slate-50 border px-4 py-2 rounded-xl">
-            ⭐ Favorited: {{ count($countries) }}
+            â­ Favorited: {{ count($countries) }}
         </div>
     </div>
 
@@ -73,7 +74,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="bg-red-50 hover:bg-red-100 text-red-600 border border-red-100 p-3 rounded-xl transition duration-150" title="Remove from Favorites">
-                                🗑️
+                                ðŸ—‘ï¸
                             </button>
                         </form>
                     </div>
@@ -82,7 +83,7 @@
         </div>
     @else
         <div class="bg-white rounded-2xl border border-slate-100 p-16 text-center shadow-sm">
-            <div class="text-5xl mb-4">⭐</div>
+            <div class="text-5xl mb-4">â­</div>
             <h2 class="text-2xl font-bold text-slate-800">Your Watchlist is Empty</h2>
             <p class="text-slate-500 mt-2 max-w-md mx-auto">Track country risk scores and core supply chain indicators by clicking the 'Add to Watchlist' button on any country page.</p>
             <a href="{{ route('countries.index') }}" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl mt-6 shadow transition">
@@ -91,4 +92,6 @@
         </div>
     @endif
 </div>
+</div>
 @endsection
+

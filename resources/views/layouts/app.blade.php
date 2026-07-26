@@ -3,18 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'SCR Platform') }} - Global Supply Chain Risk Intelligence</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
-    <!-- Scripts -->
+    <!-- App CSS -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Chart.js -->
@@ -25,27 +26,23 @@
 
     <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    @yield('head')
 </head>
+<body>
 
-<body class="bg-slate-50 text-slate-800 font-sans">
+    <!-- ====== SIDEBAR ====== -->
+    @include('partials.sidebar')
 
-    <div class="flex min-h-screen">
+    <!-- ====== NAVBAR ====== -->
+    @include('partials.navbar')
 
-        @include('partials.sidebar')
-
-        <div class="flex-1 ml-64 flex flex-col">
-
-            @include('partials.navbar')
-
-            <main class="flex-grow p-6">
-
-                @yield('content')
-
-            </main>
-
-        </div>
-
+    <!-- ====== MAIN ====== -->
+    <div class="scr-main">
+        @yield('content')
     </div>
+
+    @stack('scripts')
 
 </body>
 </html>

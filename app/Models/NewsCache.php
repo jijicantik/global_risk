@@ -17,11 +17,13 @@ class NewsCache extends Model
         'description',
         'content',
         'url',
+        'image_url',
         'source',
         'published_at',
         'sentiment_positive',
         'sentiment_negative',
-        'sentiment_label'
+        'sentiment_label',
+        'category'
     ];
 
     protected $casts = [

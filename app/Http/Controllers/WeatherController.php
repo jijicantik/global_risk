@@ -9,9 +9,9 @@ class WeatherController extends Controller
 {
     public function index(Request $request)
     {
-        $countries = Country::orderBy('name')->get();
-        $selectedCode = $request->input('country_code', 'DE'); // Default to Germany
-        $selectedCountry = Country::where('code', $selectedCode)->first() ?? $countries->first();
+        $countries = Country::with('ports')->orderBy('name')->get();
+        $selectedCode = $request->input('country_code', 'ID');
+        $selectedCountry = Country::with('ports')->where('code', $selectedCode)->first() ?? $countries->first();
 
         return view('weather.index', compact('countries', 'selectedCountry'));
     }

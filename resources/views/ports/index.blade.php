@@ -1,6 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
+<div class="scr-content">
 <div class="space-y-6">
     <!-- Header -->
     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex justify-between items-center">
@@ -97,3 +98,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 @endsection
+

@@ -1,6 +1,7 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('content')
+<div class="scr-content">
 <div class="space-y-6">
     <!-- Header -->
     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
@@ -37,7 +38,7 @@
 
             <div>
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition duration-150 shadow-md">
-                    ⚖ Compare Indicators
+                    âš– Compare Indicators
                 </button>
             </div>
         </form>
@@ -195,3 +196,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 @endif
 @endsection
+

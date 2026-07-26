@@ -10,18 +10,16 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function __construct()
+    protected function authorizeAdmin()
     {
-        $this->middleware(function ($request, $next) {
-            if (!auth()->user() || !auth()->user()->is_admin) {
-                abort(403, 'Unauthorized access. Only administrators can view this page.');
-            }
-            return $next($request);
-        });
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            abort(403, 'Unauthorized access. Only administrators can access this page.');
+        }
     }
 
     public function index()
     {
+        $this->authorizeAdmin();
         $users = User::orderBy('name')->get();
         $ports = Port::orderBy('name')->get();
         $articles = Article::with('author')->orderBy('created_at', 'desc')->get();
@@ -32,6 +30,7 @@ class AdminController extends Controller
     // User Management
     public function updateUser(Request $request, $id)
     {
+        $this->authorizeAdmin();
         $user = User::findOrFail($id);
         $request->validate([
             'name' => 'required|string|max:255',
@@ -49,6 +48,7 @@ class AdminController extends Controller
 
     public function deleteUser($id)
     {
+        $this->authorizeAdmin();
         // Don't let user delete themselves
         if (auth()->id() == $id) {
             return redirect()->back()->with('error', 'You cannot delete yourself.');
@@ -61,6 +61,7 @@ class AdminController extends Controller
     // Port Management
     public function storePort(Request $request)
     {
+        $this->authorizeAdmin();
         $request->validate([
             'name' => 'required|string|max:255',
             'code' => 'required|string|unique:ports,code',
@@ -76,6 +77,7 @@ class AdminController extends Controller
 
     public function updatePort(Request $request, $id)
     {
+        $this->authorizeAdmin();
         $port = Port::findOrFail($id);
         $request->validate([
             'name' => 'required|string|max:255',
@@ -92,6 +94,7 @@ class AdminController extends Controller
 
     public function deletePort($id)
     {
+        $this->authorizeAdmin();
         Port::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Port deleted successfully.');
     }
@@ -99,6 +102,7 @@ class AdminController extends Controller
     // Article Management
     public function storeArticle(Request $request)
     {
+        $this->authorizeAdmin();
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -118,6 +122,7 @@ class AdminController extends Controller
 
     public function updateArticle(Request $request, $id)
     {
+        $this->authorizeAdmin();
         $article = Article::findOrFail($id);
         $request->validate([
             'title' => 'required|string|max:255',
@@ -137,6 +142,7 @@ class AdminController extends Controller
 
     public function deleteArticle($id)
     {
+        $this->authorizeAdmin();
         Article::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Article deleted successfully.');
     }

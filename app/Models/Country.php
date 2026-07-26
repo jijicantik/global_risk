@@ -37,4 +37,9 @@ class Country extends Model
     {
         return $this->hasMany(NewsCache::class, 'country_code', 'code');
     }
+
+    public function ports()
+    {
+        return $this->hasMany(Port::class, 'country_code', 'code');
+    }
 }

@@ -24,7 +24,7 @@ class CountryController extends Controller
 
     public function show($code)
     {
-        $country = Country::with(['metrics', 'riskScore'])->where('code', strtoupper($code))->firstOrFail();
+        $country = Country::with(['metrics', 'riskScore', 'ports'])->where('code', strtoupper($code))->firstOrFail();
         
         // Dynamically compute risk score if missing
         if (!$country->riskScore) {

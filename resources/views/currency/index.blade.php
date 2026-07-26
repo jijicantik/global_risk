@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="scr-content">
 <div class="space-y-6">
     <!-- Header -->
     <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex justify-between items-center">
@@ -54,7 +55,7 @@
 
         <!-- Exchange Rate Trend Line Chart -->
         <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 p-6 flex flex-col">
-            <h2 class="text-xl font-bold text-slate-800 mb-4">Historical Valuation Trend (2020-2024)</h2>
+            <h2 class="text-xl font-bold text-slate-800 mb-4">Historical Valuation Trend (2020-2026)</h2>
             <div class="flex-grow flex items-center justify-center min-h-[300px]">
                 <canvas id="currencyTrendChart" style="max-height:350px"></canvas>
             </div>
@@ -130,3 +131,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 @endsection
+

@@ -12,11 +12,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Seed users
+        // Seed Admin Users
         User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
-                'name' => 'Admin Manager',
+                'name' => 'System Administrator',
+                'password' => bcrypt('password'),
+                'is_admin' => true,
+            ]
+        );
+
+        User::updateOrCreate(
+            ['email' => 'admin@gscrisk.com'],
+            [
+                'name' => 'Global Admin Manager',
                 'password' => bcrypt('password'),
                 'is_admin' => true,
             ]
@@ -25,7 +34,7 @@ class DatabaseSeeder extends Seeder
         User::updateOrCreate(
             ['email' => 'test@example.com'],
             [
-                'name' => 'Test User',
+                'name' => 'Risk Analyst User',
                 'password' => bcrypt('password'),
                 'is_admin' => false,
             ]
